@@ -1,5 +1,5 @@
-FROM alpine:latest
-RUN apk add uwsgi-python3 py3-pip python3
+FROM alpine:3.14
+RUN apk add uwsgi-python3 py3-pip python3=~3.9
 RUN addgroup -S firomon && adduser -S firomon -G firomon
 USER firomon
 COPY firomon-web/ /firomon
