@@ -1,4 +1,4 @@
-from werkzeug.contrib.cache import SimpleCache
+from cachelib import SimpleCache
 from validate_email import validate_email
 from random import SystemRandom
 import dateutil.relativedelta
@@ -298,8 +298,9 @@ def api_export():
     for x in json_this:
         b += x['label'] + ' ' + x['txid'].replace(',', '') + '\n'
 
-    return b
-
+    resp = flask.make_response(b, 200)
+    resp.mimetype = "text/plain"
+    return resp
 
 
 @app.route('/api/get_nodes', methods=['GET'])
